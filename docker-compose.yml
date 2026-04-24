@@ -1,0 +1,11 @@
+services:
+  fast-api:
+    image: fast-api-app:1.0
+    build: 
+      context: .
+      dockerfile: app/dockerfile
+    container_name: fast-api-app
+    ports:
+      - 8000:8080
+    restart: unless-stopped
+
