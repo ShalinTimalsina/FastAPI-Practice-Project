@@ -1,11 +1,39 @@
 services:
   fast-api:
     image: fast-api-app:1.0
+    env_file:
+      - .env
     build: 
       context: .
       dockerfile: app/dockerfile
     container_name: fast-api-app
     ports:
-      - 8000:8080
+      - 8000:8000
     restart: unless-stopped
+    depends_on:
+      - Database
+    networks:
+      - db-network
+  
+  Database:
+    image: postgres:16
+    env_file:
+      - .env
+    container_name: postgres-database
+    ports:
+      - 5432:5432
+    restart: unless-stopped 
+    networks:
+      - db-network
+  Adminer:
+    image: adminer:latest
+    container_name: Adminer-db
+    ports:
+      - 8080:8080
+    depends_on:
+      - Database
+    networks:
+      - db-network
 
+networks:
+  db-network:
