@@ -1,21 +1,46 @@
 services:
-  fast-api:
+
+###################################################################################
+                           ## Frontend ## 
+###################################################################################
+  frontend: 
+    image: frontend-react:1.0
+    build: 
+      context: .
+      dockerfile: frontend/dockerfile
+    container_name: fast-frontend-app
+    ports:
+      - 5000:5000
+    networks:
+      - db-network
+    depends_on:
+      - backend
+ 
+###################################################################################
+                           ## Backend ## 
+###################################################################################
+ 
+  backend:
     image: fast-api-app:1.0
     env_file:
       - .env
     build: 
-      context: .
-      dockerfile: app/dockerfile
-    container_name: fast-api-app
+      context: ./backend
+      dockerfile: dockerfile
+    container_name: fast-backend-app
     ports:
       - 8000:8000
     restart: unless-stopped
     depends_on:
-      - Database
+      - database
     networks:
       - db-network
   
-  Database:
+###################################################################################
+                           ## Database ## 
+###################################################################################
+ 
+  database:
     image: postgres:16
     env_file:
       - .env
@@ -25,15 +50,26 @@ services:
     restart: unless-stopped 
     networks:
       - db-network
+    volumes:
+      - pgdb-fast:/var/lib/postgresql/data
+    
+###################################################################################
+                           ## Database Visualizer ## 
+###################################################################################
+ 
+  
   Adminer:
     image: adminer:latest
     container_name: Adminer-db
     ports:
       - 8080:8080
     depends_on:
-      - Database
+      - database
     networks:
       - db-network
 
 networks:
   db-network:
+
+volumes: 
+  pgdb-fast
