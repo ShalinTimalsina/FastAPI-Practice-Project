@@ -13,10 +13,11 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 origins = [
-    "http://localhost", 
-   
+    "http://localhost",
+    "http://localhost:80",
+    "http://localhost:3000",
+    "http://localhost:5000",
 ]
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -27,10 +28,15 @@ app.add_middleware(
 
 #Now we need to make the endpoints 
 
+# Root path
 @app.get("/")
 def root():
     return {"message": "Hello World"}
 
+# Health Check 
+@app.get("/health")
+def health_check():
+    return {"status" :"Healthy"}
 
 @app.get("/posts", response_model=list[PostResponse])
 def get_all_posts(limit: int | None = None, db: Session = Depends(get_db)):
