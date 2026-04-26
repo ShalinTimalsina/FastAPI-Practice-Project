@@ -1,8 +1,8 @@
 from fastapi import FastAPI , HTTPException, Depends
-from backend.schemas import PostCreate , PostResponse
+from schemas import PostCreate , PostResponse
 from sqlalchemy.orm import Session
-from backend.models import Post
-from backend.database import Base , engine , get_db
+from models import Post
+from database import Base , engine , get_db
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -13,8 +13,8 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 origins = [
-    "http://localhost:5173",  # Vite
-    "http://localhost:3000",  # CRA
+    "http://localhost", 
+   
 ]
 
 app.add_middleware(
