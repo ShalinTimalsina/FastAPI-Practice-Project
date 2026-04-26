@@ -1,8 +1,8 @@
 from fastapi import FastAPI , HTTPException, Depends
-from app.schemas import PostCreate , PostResponse
+from backend.schemas import PostCreate , PostResponse
 from sqlalchemy.orm import Session
-from app.models import Post
-from app.database import Base , engine , get_db
+from backend.models import Post
+from backend.database import Base , engine , get_db
 
 
 # Create Tables 
