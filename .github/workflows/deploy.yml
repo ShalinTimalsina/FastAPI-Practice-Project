@@ -13,7 +13,7 @@ jobs:
 
     steps:  
       - name: Checkout the code in the runner.
-        uses: actions/checkoutv6.0.2
+        uses: actions/checkout@v6.0.2
       
       - name: Verify docker's status
         run: |
