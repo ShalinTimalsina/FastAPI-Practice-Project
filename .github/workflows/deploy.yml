@@ -70,7 +70,7 @@ jobs:
       - name: Install Backend Dependencies
         run: | 
           cd backend
-          uv sync --system
+          uv sync 
       
       - name: Run Backend Unit test
         run: | 
