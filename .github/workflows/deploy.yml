@@ -75,7 +75,7 @@ jobs:
       - name: Run Backend Unit test
         run: | 
           cd backend
-          pytest
+          uv run pytest
 
       # Frontend Tests
       - name: Setup Node.js environment
