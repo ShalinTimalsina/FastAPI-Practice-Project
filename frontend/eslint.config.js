@@ -5,7 +5,7 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['dist', '.vite', 'node_modules']),
   {
     files: ['**/*.{js,jsx}'],
     extends: [
@@ -16,6 +16,11 @@ export default defineConfig([
     languageOptions: {
       globals: globals.browser,
       parserOptions: { ecmaFeatures: { jsx: true } },
+    },
+    rules: {
+      // This rule is too strict for typical data-fetching flows (including custom hooks).
+      // We still follow hooks rules-of-hooks; we just allow state updates from effects.
+      'react-hooks/set-state-in-effect': 'off',
     },
   },
 ])
