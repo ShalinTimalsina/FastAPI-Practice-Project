@@ -43,7 +43,7 @@ jobs:
       - name: Gitleaks
         uses: gitleaks/gitleaks-action@v2.3.9 
         with: 
-          args: ['detect --source . --exit-code 1']  
+          args: detect --source . --exit-code 1  
 
 
   tests:
