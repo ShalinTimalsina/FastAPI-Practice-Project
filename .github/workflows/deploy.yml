@@ -109,14 +109,25 @@ jobs:
           password: ${{secrets.DOCKERHUB_TOKEN}}
 
     
-      - name: Build and Push 
+      - name: Build and push backend
         uses: docker/build-push-action@v7.1.0
-        with: 
-          context: . 
+        with:
+          context: ./backend
+          file: ./backend/dockerfile
           push: true
-          tags: shalintim/fast-app:latest
-  
+          tags: shalintimalsina/fast-backend:latest
+    
+      
+      - name: Build and push frontend
+        uses: docker/build-push-action@v7.1.0
+        with:
+          context: ./frontend
+          file: ./frontend/dockerfile
+          push: true
+          tags: shalintimalsina/fast-frontend:latest
+
   # push:
+
 
   # deploy:
 
