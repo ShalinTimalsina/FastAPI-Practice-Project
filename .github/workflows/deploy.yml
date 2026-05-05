@@ -120,7 +120,7 @@ jobs:
           context: ./backend
           file: ./backend/dockerfile
           push: true
-          tags: shalintimalsina/fast-backend:latest
+          tags: shalintim/fast-backend:latest
     
       
       - name: Build and push frontend
@@ -129,7 +129,7 @@ jobs:
           context: ./frontend
           file: ./frontend/dockerfile
           push: true
-          tags: shalintimalsina/fast-frontend:latest
+          tags: shalintim/fast-frontend:latest
 
   # push:
 
