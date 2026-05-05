@@ -94,9 +94,9 @@ jobs:
           npm test -- --watch=false
   
 
-  build:
+  build_and_push:
 
-    name: Build the docker image
+    name: Build the docker image and push to dockerhub
     runs-on: ubuntu-latest
     needs: tests
 
@@ -131,7 +131,7 @@ jobs:
           push: true
           tags: shalintim/fast-frontend:latest
 
-  # push:
+  
 
 
   # deploy:
