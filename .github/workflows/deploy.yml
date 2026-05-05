@@ -13,7 +13,7 @@ jobs:
 
     steps:  
       - name: Checkout the code in the runner.
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v4
       
       - name: Verify docker's status
         run: |
@@ -38,7 +38,7 @@ jobs:
 
     steps:
       - name: Checkout the code in the runner.
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v4
         
       - name: Gitleaks
         uses: gitleaks/gitleaks-action@v2.3.9 
@@ -55,13 +55,13 @@ jobs:
     steps:
       
       - name: Checkout the code in the runner.
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v4
       
       # Backend Test
       - name: Setup Python
-        uses: actions/setup-python@v6.2.0
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.14
+          python-version: '3.12'
       
       - name: Install uv 
         run: |
@@ -79,7 +79,7 @@ jobs:
 
       # Frontend Tests
       - name: Setup Node.js environment
-        uses: actions/setup-node@v6.4.0
+        uses: actions/setup-node@v4
         with:
           node-version: 22
       
@@ -102,28 +102,31 @@ jobs:
 
     steps:  
 
+      - name: Checkout the code in the runner.
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Login to Docker hub 
-        uses: docker/login-action@v4.1.0
+        uses: docker/login-action@v3
         with:
           username: ${{vars.DOCKERHUB_USERNAME}}
           password: ${{secrets.DOCKERHUB_TOKEN}}
-      
-      - name: Checkout the code in the runner.
-        uses: actions/checkout@v6.0.2
     
       - name: Build and push backend
-        uses: docker/build-push-action@v7.1.0
+        uses: docker/build-push-action@v6
         with:
-          context: .
+          context: ./backend
           file: ./backend/dockerfile
           push: true
           tags: shalintimalsina/fast-backend:latest
     
       
       - name: Build and push frontend
-        uses: docker/build-push-action@v7.1.0
+        uses: docker/build-push-action@v6
         with:
-          context: .
+          context: ./frontend
           file: ./frontend/dockerfile
           push: true
           tags: shalintimalsina/fast-frontend:latest
