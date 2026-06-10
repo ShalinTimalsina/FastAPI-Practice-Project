@@ -70,7 +70,7 @@ project-root/
 ├── .env
 └── README.md
 
----
+
 
 ## Running the Application
 
