@@ -10,10 +10,10 @@ This project emphasizes **DevOps engineering principles over application develop
 
 This project simulates a production-ready workflow where a full-stack application is:
 
-- 🐳 Containerized using Docker best practices  
-- 🔄 Automated through CI/CD pipelines (GitHub Actions)  
-- ⚙️ Configured using environment-based setups  
-- ☁️ Designed for cloud-native deployment (AWS-ready)  
+-  Containerized using Docker best practices  
+-  Automated through CI/CD pipelines (GitHub Actions)  
+-  Configured using environment-based setups  
+-  Designed for cloud-native deployment (AWS-ready)  
 
 ---
 
@@ -40,7 +40,7 @@ This project simulates a production-ready workflow where a full-stack applicatio
 
 ---
 
-## 🔄 CI/CD Pipeline (GitHub Actions)
+## CI/CD Pipeline (GitHub Actions)
 
 ### Pipeline Steps
 
@@ -57,19 +57,6 @@ This project simulates a production-ready workflow where a full-stack applicatio
 - Automated build verification  
 - Early error detection  
 - Easy integration with AWS deployment  
-
----
-
-## 📂 Project Structure
-
-project-root/
-├── backend/
-├── frontend/
-├── docker-compose.yml
-├── .github/workflows/
-├── .env
-└── README.md
-
 
 
 ## Running the Application
